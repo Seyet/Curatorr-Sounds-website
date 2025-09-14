@@ -30,7 +30,7 @@ const musicDrops = [
     image: "https://i.postimg.cc/ZYD0F3bv/Image-16.jpg",
     releaseDate: "Sep 2025",
     genre: "Afro beat",
-    url: "https://open.spotify.com/track/example1",
+    url: "https://curatorrsounds.fanlink.tv/change-story_and_many-thoughts",
   },
   {
     title: "That girl",
@@ -62,7 +62,7 @@ const latestReleases = [
     artist: "Dharmisco_Lm Ft Waziyung",
     image: "https://i.postimg.cc/ZYD0F3bv/Image-16.jpg",
     genre: "Afro-beat",
-    url: "https://open.spotify.com/track/example4",
+    url: "https://curatorrsounds.fanlink.tv/change-story_and_many-thoughts",
   },
   {
     title: "That Girl",
@@ -450,7 +450,7 @@ export default function MusicPublisherHome() {
                 name: "Dharmisco_lm",
                 genre: "Afro-beat",
                 image: "https://i.postimg.cc/8CyRqznP/Image-9.jpg",
-                url: "https://example.com/dharmisco",
+                url: "https://open.spotify.com/artist/5I48g4GCWfT4ECAZ7umM2O?si=uKwmj5QGTbGGfXT0L1GS3A",
               },
               {
                 name: "SOK1E",
@@ -501,7 +501,7 @@ export default function MusicPublisherHome() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6">
             {latestReleases.map((release, index) => (
               <a key={index} href={release.url} target="_blank" rel="noopener noreferrer" className="block">
-                <Card className="group hover:shadow-lg transition-all duration-300 bg-card border-border cursor-pointer">
+                <Card className="group hover:shadow-lg transition-all duration-300 bg-white border-gray-200 cursor-pointer relative z-10">
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img
@@ -516,12 +516,14 @@ export default function MusicPublisherHome() {
                         </Button>
                       </div>
                     </div>
-                    <div className="p-3 sm:p-4">
-                      <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-1 line-clamp-2">
+                    <div className="p-3 sm:p-4 bg-white relative z-10">
+                      <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-1 line-clamp-2 relative z-10">
                         {release.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground mb-2 line-clamp-1">{release.artist}</p>
-                      <Badge variant="outline" className="text-xs">
+                      <p className="text-xs sm:text-sm text-gray-600 mb-2 line-clamp-1 relative z-10">
+                        {release.artist}
+                      </p>
+                      <Badge variant="outline" className="text-xs border-gray-300 text-gray-700 bg-white relative z-10">
                         {release.genre}
                       </Badge>
                     </div>
