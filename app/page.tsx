@@ -523,50 +523,50 @@ export default function MusicPublisherHome() {
       </section>
 
       {/* Services */}
-      <section
-        id="services"
-        className="py-12 sm:py-16 md:py-20 px-4 bg-card border-border hover:shadow-lg transition-shadow"
-      >
-        <div className="container mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive support for independent artists
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                icon: <Music className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
-                title: "Music Distribution",
-                description: "Get your music on all major streaming platforms and digital stores worldwide.",
-              },
-              {
-                icon: <Users className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
-                title: "Artist Development",
-                description: "Professional guidance to help you grow your career and reach new audiences.",
-              },
-              {
-                icon: <Award className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
-                title: "Marketing & Promotion",
-                description: "Strategic campaigns to amplify your music and build your fanbase.",
-              },
-            ].map((service, index) => (
-              <Card key={index} className="text-center bg-background border-border hover:shadow-lg transition-shadow">
-                <CardHeader className="pb-4">
-                  <div className="flex justify-center mb-3 sm:mb-4">{service.icon}</div>
-                  <CardTitle className="text-foreground text-lg sm:text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-muted-foreground text-sm sm:text-base">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+   <section
+  id="services"
+  className="py-12 sm:py-16 md:py-20 px-4 bg-card border-border hover:shadow-lg transition-shadow"
+>
+  <div className="container mx-auto">
+    <div className="text-center mb-12 sm:mb-16">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
+      <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+        Comprehensive support for independent artists
+      </p>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 justify-center">
+      {[
+        {
+          icon: <Music className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
+          title: "Music Distribution",
+          description: "Get your music on all major streaming platforms and digital stores worldwide.",
+        },
+        {
+          icon: <Award className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
+          title: "Marketing & Promotion",
+          description: "Strategic campaigns to amplify your music and build your fanbase.",
+        },
+      ].map((service, index) => (
+        <Card
+          key={index}
+          className="text-center bg-background border-border hover:shadow-lg transition-shadow"
+        >
+          <CardHeader className="pb-4">
+            <div className="flex justify-center mb-3 sm:mb-4">{service.icon}</div>
+            <CardTitle className="text-foreground text-lg sm:text-xl">{service.title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription className="text-muted-foreground text-sm sm:text-base">
+              {service.description}
+            </CardDescription>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+
 
       {/* Newsletter Signup */}
       <section className="py-12 sm:py-16 md:py-20 px-4 bg-foreground">
