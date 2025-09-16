@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -210,9 +209,9 @@ export default function MusicPublisherHome() {
               </a>
             </div>
             <div className="hidden md:block">
-              <Link href="/submit-demo">
+              <a href="https://tally.so/r/mVrjLy" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Submit Demo</Button>
-              </Link>
+              </a>
             </div>
           </div>
           {isMobileMenuOpen && (
@@ -236,9 +235,9 @@ export default function MusicPublisherHome() {
                 <a href="#contact" className="text-foreground hover:text-primary transition-colors">
                   Contact
                 </a>
-                <Link href="/submit-demo">
+                <a href="https://tally.so/r/mVrjLy" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">Submit Demo</Button>
-                </Link>
+                </a>
               </div>
             </div>
           )}
