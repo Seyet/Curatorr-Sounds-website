@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Upload, Music, User, FileText, ArrowLeft } from "lucide-react"
-import { useState } from "react"
+import { Upload, Music, User, FileText, ArrowLeft, CheckCircle } from "lucide-react"
+import { useState, useRef } from "react"
 import Link from "next/link"
 
 export default function SubmitDemo() {
@@ -16,14 +16,18 @@ export default function SubmitDemo() {
     artistName: "",
     email: "",
     phone: "",
-    songTitle: "",
+    trackTitle: "",
     genre: "",
-    releaseDate: "",
     description: "",
-    socialLinks: "",
+    socialMedia: "",
+    previousWork: "",
+    additionalInfo: "",
   })
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState("")
+  const [isSuccess, setIsSuccess] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -34,29 +38,85 @@ export default function SubmitDemo() {
     setFormData((prev) => ({ ...prev, genre: value }))
   }
 
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size > 50 * 1024 * 1024) {
+        setMessage("File size must be less than 50MB")
+        setIsSuccess(false)
+        return
+      }
+
+      const allowedTypes = ["audio/mpeg", "audio/wav", "audio/flac", "audio/mp3"]
+      if (!allowedTypes.includes(file.type) && !file.name.toLowerCase().match(/\.(mp3|wav|flac)$/)) {
+        setMessage("Please upload an MP3, WAV, or FLAC file")
+        setIsSuccess(false)
+        return
+      }
+
+      setSelectedFile(file)
+      setMessage("")
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setMessage("")
+    setIsSuccess(false)
+
+    if (!selectedFile) {
+      setMessage("Please select a demo file to upload")
+      setIsSubmitting(false)
+      setIsSuccess(false)
+      return
+    }
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      setMessage(
-        "Demo submitted successfully! We'll review your submission and get back to you within 5-7 business days.",
-      )
-      setFormData({
-        artistName: "",
-        email: "",
-        phone: "",
-        songTitle: "",
-        genre: "",
-        releaseDate: "",
-        description: "",
-        socialLinks: "",
+      const submitFormData = new FormData()
+
+      Object.entries(formData).forEach(([key, value]) => {
+        submitFormData.append(key, value)
       })
+
+      submitFormData.append("demoFile", selectedFile)
+
+      const response = await fetch("/api/submit-demo", {
+        method: "POST",
+        body: submitFormData,
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setMessage(
+          "Demo submitted successfully! We'll review your submission and get back to you within 5-7 business days.",
+        )
+        setIsSuccess(true)
+
+        setFormData({
+          artistName: "",
+          email: "",
+          phone: "",
+          trackTitle: "",
+          genre: "",
+          description: "",
+          socialMedia: "",
+          previousWork: "",
+          additionalInfo: "",
+        })
+        setSelectedFile(null)
+        if (fileInputRef.current) {
+          fileInputRef.current.value = ""
+        }
+      } else {
+        setMessage(result.error || "Failed to submit demo. Please try again.")
+        setIsSuccess(false)
+      }
     } catch (error) {
-      setMessage("Failed to submit demo. Please try again.")
+      console.error("Submission error:", error)
+      setMessage("Failed to submit demo. Please check your connection and try again.")
+      setIsSuccess(false)
     } finally {
       setIsSubmitting(false)
     }
@@ -164,13 +224,13 @@ export default function SubmitDemo() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="songTitle">Song Title *</Label>
+                      <Label htmlFor="trackTitle">Track Title *</Label>
                       <Input
-                        id="songTitle"
-                        name="songTitle"
-                        value={formData.songTitle}
+                        id="trackTitle"
+                        name="trackTitle"
+                        value={formData.trackTitle}
                         onChange={handleInputChange}
-                        placeholder="Your song title"
+                        placeholder="Your track title"
                         required
                       />
                     </div>
@@ -193,32 +253,37 @@ export default function SubmitDemo() {
                       </Select>
                     </div>
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="releaseDate">Planned Release Date</Label>
-                    <Input
-                      id="releaseDate"
-                      name="releaseDate"
-                      type="date"
-                      value={formData.releaseDate}
-                      onChange={handleInputChange}
-                    />
-                  </div>
                 </div>
 
                 {/* Demo Upload */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-foreground flex items-center space-x-2">
                     <Upload className="h-5 w-5 text-primary" />
-                    <span>Demo Upload</span>
+                    <span>Demo Upload *</span>
                   </h3>
 
                   <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
                     <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground mb-2">Drag and drop your demo file here, or click to browse</p>
+                    <p className="text-muted-foreground mb-2">
+                      {selectedFile ? selectedFile.name : "Drag and drop your demo file here, or click to browse"}
+                    </p>
                     <p className="text-sm text-muted-foreground mb-4">Supported formats: MP3, WAV, FLAC (Max 50MB)</p>
-                    <Button type="button" variant="outline">
-                      Choose File
+                    {selectedFile && (
+                      <p className="text-sm text-green-600 mb-4 flex items-center justify-center space-x-2">
+                        <CheckCircle className="h-4 w-4" />
+                        <span>File selected: {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB</span>
+                      </p>
+                    )}
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".mp3,.wav,.flac,audio/*"
+                      onChange={handleFileSelect}
+                      className="hidden"
+                      required
+                    />
+                    <Button type="button" variant="outline" onClick={() => fileInputRef.current?.click()}>
+                      {selectedFile ? "Change File" : "Choose File"}
                     </Button>
                   </div>
                 </div>
@@ -244,13 +309,37 @@ export default function SubmitDemo() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="socialLinks">Social Media Links</Label>
+                    <Label htmlFor="socialMedia">Social Media Links</Label>
                     <Textarea
-                      id="socialLinks"
-                      name="socialLinks"
-                      value={formData.socialLinks}
+                      id="socialMedia"
+                      name="socialMedia"
+                      value={formData.socialMedia}
                       onChange={handleInputChange}
                       placeholder="Instagram, Spotify, YouTube, etc. (one per line)"
+                      rows={3}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="previousWork">Previous Work/Releases</Label>
+                    <Textarea
+                      id="previousWork"
+                      name="previousWork"
+                      value={formData.previousWork}
+                      onChange={handleInputChange}
+                      placeholder="Tell us about your previous releases, performances, or achievements..."
+                      rows={3}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="additionalInfo">Additional Information</Label>
+                    <Textarea
+                      id="additionalInfo"
+                      name="additionalInfo"
+                      value={formData.additionalInfo}
+                      onChange={handleInputChange}
+                      placeholder="Anything else you'd like us to know..."
                       rows={3}
                     />
                   </div>
@@ -271,7 +360,7 @@ export default function SubmitDemo() {
                 {message && (
                   <div
                     className={`p-4 rounded-lg text-center ${
-                      message.includes("successfully")
+                      isSuccess
                         ? "bg-green-50 text-green-700 border border-green-200"
                         : "bg-red-50 text-red-700 border border-red-200"
                     }`}
