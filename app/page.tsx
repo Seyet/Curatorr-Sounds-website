@@ -99,20 +99,7 @@ const latestReleases = [
     genre: "Afro-beat",
     url: "https://curatorrsounds.fanlink.tv/Martell",
   },
-  {
-    title: "Body Riddim ",
-    artist: "Valentino RDM",
-    image: "https://i.postimg.cc/25WZmZhj/Image-14.jpg",
-    genre: "Afro Pop",
-    url: "https://curatorrsounds.fanlink.tv/bodyriddim",
-  },
-  {
-    title: "Angel Gabriel",
-    artist: "Habeskid",
-    image: "https://i.postimg.cc/k5hqj1BB/Image-15.jpg",
-    genre: "Afro-beat",
-    url: "https://curatorrsounds.fanlink.tv/angelgabriel",
-  },
+  
 ]
 
 export default function MusicPublisherHome() {
