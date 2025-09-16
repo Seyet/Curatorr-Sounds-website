@@ -1,37 +1,53 @@
 import { put } from "@vercel/blob"
 import { type NextRequest, NextResponse } from "next/server"
+import Resend from "resend"
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 async function sendDemoNotificationEmail(submissionData: any, fileUrl: string) {
   try {
-    // Using a simple fetch to send email via a service like Resend or similar
-    // For now, we'll use a basic email service approach
     const emailData = {
-      to: "curatorsoundent@gmail.com",
+      from: "CURATORR SOUNDS <noreply@curatorrsounds.com>",
+      to: ["curatorsoundent@gmail.com"],
       subject: `New Demo Submission: ${submissionData.trackTitle} by ${submissionData.artistName}`,
       html: `
-        <h2>New Demo Submission Received</h2>
-        <p><strong>Artist Name:</strong> ${submissionData.artistName}</p>
-        <p><strong>Email:</strong> ${submissionData.email}</p>
-        <p><strong>Track Title:</strong> ${submissionData.trackTitle}</p>
-        <p><strong>Genre:</strong> ${submissionData.genre}</p>
-        <p><strong>Description:</strong> ${submissionData.description || "Not provided"}</p>
-        <p><strong>Social Media:</strong> ${submissionData.socialMedia || "Not provided"}</p>
-        <p><strong>Previous Work:</strong> ${submissionData.previousWork || "Not provided"}</p>
-        <p><strong>Additional Info:</strong> ${submissionData.additionalInfo || "Not provided"}</p>
-        <p><strong>Demo File:</strong> <a href="${fileUrl}" target="_blank">Download Demo</a></p>
-        <p><strong>File Size:</strong> ${(submissionData.fileSize / 1024 / 1024).toFixed(2)} MB</p>
-        <p><strong>Submitted At:</strong> ${new Date(submissionData.submittedAt).toLocaleString()}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333; border-bottom: 2px solid #000; padding-bottom: 10px;">New Demo Submission Received</h2>
+          
+          <div style="background: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 8px;">
+            <h3 style="color: #000; margin-top: 0;">Artist Information</h3>
+            <p><strong>Artist Name:</strong> ${submissionData.artistName}</p>
+            <p><strong>Email:</strong> ${submissionData.email}</p>
+            <p><strong>Track Title:</strong> ${submissionData.trackTitle}</p>
+            <p><strong>Genre:</strong> ${submissionData.genre}</p>
+          </div>
+
+          <div style="background: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 8px;">
+            <h3 style="color: #000; margin-top: 0;">Track Details</h3>
+            <p><strong>Description:</strong> ${submissionData.description || "Not provided"}</p>
+            <p><strong>Social Media:</strong> ${submissionData.socialMedia || "Not provided"}</p>
+            <p><strong>Previous Work:</strong> ${submissionData.previousWork || "Not provided"}</p>
+            <p><strong>Additional Info:</strong> ${submissionData.additionalInfo || "Not provided"}</p>
+          </div>
+
+          <div style="background: #000; color: #fff; padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center;">
+            <h3 style="color: #fff; margin-top: 0;">Demo File</h3>
+            <p><strong>File Size:</strong> ${(submissionData.fileSize / 1024 / 1024).toFixed(2)} MB</p>
+            <a href="${fileUrl}" target="_blank" style="display: inline-block; background: #fff; color: #000; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px;">
+              🎵 Download Demo File
+            </a>
+          </div>
+
+          <div style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 30px; color: #666; font-size: 14px;">
+            <p><strong>Submitted At:</strong> ${new Date(submissionData.submittedAt).toLocaleString()}</p>
+            <p>This submission was sent from the CURATORR SOUNDS website demo submission form.</p>
+          </div>
+        </div>
       `,
     }
 
-    // For now, we'll log the email data - in production, you'd integrate with an email service
-    console.log("Email notification would be sent:", emailData)
-
-    // TODO: Integrate with actual email service like Resend, SendGrid, or Nodemailer
-    // Example with Resend:
-    // const resend = new Resend(process.env.RESEND_API_KEY)
-    // await resend.emails.send(emailData)
-
+    const result = await resend.emails.send(emailData)
+    console.log("Email sent successfully:", result.id)
     return true
   } catch (error) {
     console.error("Failed to send email notification:", error)
@@ -87,7 +103,11 @@ export async function POST(request: NextRequest) {
       submittedAt: new Date().toISOString(),
     }
 
-    await sendDemoNotificationEmail(submissionData, blob.url)
+    const emailSent = await sendDemoNotificationEmail(submissionData, blob.url)
+
+    if (!emailSent) {
+      console.warn("Email notification failed, but demo was uploaded successfully")
+    }
 
     return NextResponse.json({
       success: true,
