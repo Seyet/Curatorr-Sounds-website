@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import {
   Music,
-  Users,
   Award,
   Play,
   Mail,
@@ -27,30 +26,32 @@ const musicDrops = [
   {
     title: "Change Story & Many Thoughts",
     artist: "Dharmisco_lm ft Waziyung",
-    image: "https://i.postimg.cc/ZYD0F3bv/Image-16.jpg",
+    image: "https://i.postimg.cc/1X1Mxb20/IMG-4104.png",
     releaseDate: "Sep 2025",
     genre: "Afro beat",
     url: "https://curatorrsounds.fanlink.tv/change-story_and_many-thoughts",
   },
   {
-    title: "That girl",
-    artist: "Mouth ft Habeskid",
-    image: "https://i.postimg.cc/8kKCdbxv/Image-11.jpg",
-    releaseDate: "Aug 2025",
-    genre: "Afro beat",
-    url: "https://curatorrsounds.fanlink.tv/That-girl",
+    title: "Body Riddim",
+    artist: "Valentino RDM",
+    image: "https://i.postimg.cc/kGj0WFXv/IMG-8336.png",
+    releaseDate: "Feb 2025",
+    genre: "Afro Pop",
+    url: "https://curatorrsounds.fanlink.tv/bodyriddim",
   },
   {
-    title: "Pray ",
-    artist: "Valentino RDM",
-    image: "https://i.postimg.cc/bwy0Dk3D/Image-12.jpg",
+    title: "Martell",
+    artist: "Habeskid",
+    image: "https://i.postimg.cc/901n1J88/IMG-2934.png",
+    releaseDate: "May 2025",
     genre: "Afrobeat",
-    url: "https://curatorrsounds.fanlink.tv/Pray",
+    url: "https://curatorrsounds.fanlink.tv/Martell",
   },
   {
     title: "Ohema & How to please a woman",
     artist: "SOK1E",
-    image: "https://i.postimg.cc/tg7hDy09/Image-13.jpg",
+    image: "https://i.postimg.cc/SRQFGYdG/245-B301-A-4-E26-44-AD-A80-F-B96290-A8-A887.jpg",
+    releaseDate: "Jul 2025",
     genre: "Afro-Pop",
     url: "https://curatorrsounds.lnk.to/ohema-htpaw",
   },
@@ -99,7 +100,6 @@ const latestReleases = [
     genre: "Afro-beat",
     url: "https://curatorrsounds.fanlink.tv/Martell",
   },
-  
 ]
 
 export default function MusicPublisherHome() {
@@ -523,50 +523,45 @@ export default function MusicPublisherHome() {
       </section>
 
       {/* Services */}
-   <section
-  id="services"
-  className="py-12 sm:py-16 md:py-20 px-4 bg-card border-border hover:shadow-lg transition-shadow"
->
-  <div className="container mx-auto">
-    <div className="text-center mb-12 sm:mb-16">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
-      <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-        Comprehensive support for independent artists
-      </p>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 justify-center">
-      {[
-        {
-          icon: <Music className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
-          title: "Music Distribution",
-          description: "Get your music on all major streaming platforms and digital stores worldwide.",
-        },
-        {
-          icon: <Award className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
-          title: "Marketing & Promotion",
-          description: "Strategic campaigns to amplify your music and build your fanbase.",
-        },
-      ].map((service, index) => (
-        <Card
-          key={index}
-          className="text-center bg-background border-border hover:shadow-lg transition-shadow"
-        >
-          <CardHeader className="pb-4">
-            <div className="flex justify-center mb-3 sm:mb-4">{service.icon}</div>
-            <CardTitle className="text-foreground text-lg sm:text-xl">{service.title}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription className="text-muted-foreground text-sm sm:text-base">
-              {service.description}
-            </CardDescription>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
-
-
+      <section
+        id="services"
+        className="py-12 sm:py-16 md:py-20 px-4 bg-card border-border hover:shadow-lg transition-shadow"
+      >
+        <div className="container mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">Our Services</h2>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive support for independent artists
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 justify-center">
+            {[
+              {
+                icon: <Music className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
+                title: "Music Distribution",
+                description: "Get your music on all major streaming platforms and digital stores worldwide.",
+              },
+              {
+                icon: <Award className="h-10 sm:h-12 w-10 sm:w-12 text-primary" />,
+                title: "Marketing & Promotion",
+                description: "Strategic campaigns to amplify your music and build your fanbase.",
+              },
+            ].map((service, index) => (
+              <Card key={index} className="text-center bg-background border-border hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-4">
+                  <div className="flex justify-center mb-3 sm:mb-4">{service.icon}</div>
+                  <CardTitle className="text-foreground text-lg sm:text-xl">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-muted-foreground text-sm sm:text-base">
+                    {service.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Newsletter Signup */}
       <section className="py-12 sm:py-16 md:py-20 px-4 bg-foreground">
