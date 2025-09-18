@@ -15,12 +15,40 @@ import {
   MapPin,
   Instagram,
   Twitter,
-  Facebook,
   ChevronLeft,
   ChevronRight,
   Menu,
 } from "lucide-react"
 import { useState, useEffect } from "react"
+
+// ✅ WhatsApp SVG Component
+const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M20.52 3.48A11.82 11.82 0 0 0 12.05 0C5.6 0 .23 5.37.23 11.82c0 2.08.55 4.1 1.6 5.89L0 24l6.43-1.69a11.78 11.78 0 0 0 5.61 1.43h.01c6.45 0 11.82-5.37 11.82-11.82 0-3.16-1.23-6.13-3.35-8.25zM12.05 21.6c-1.8 0-3.56-.48-5.1-1.4l-.36-.21-3.82 1 1.02-3.73-.25-.38a9.61 9.61 0 0 1-1.48-5.13c0-5.31 4.32-9.63 9.63-9.63 2.57 0 4.98 1 6.79 2.8a9.54 9.54 0 0 1 2.83 6.8c0 5.31-4.32 9.63-9.63 9.63zm5.29-7.21c-.29-.14-1.71-.84-1.97-.93-.27-.1-.46-.14-.66.14-.2.29-.76.93-.93 1.12-.17.19-.34.21-.63.07-.29-.14-1.22-.45-2.32-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.2-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.66-1.59-.91-2.18-.24-.58-.48-.5-.66-.51-.17-.01-.36-.01-.55-.01s-.5.07-.76.36c-.26.29-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .15.19 2.02 3.08 4.9 4.32.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.33z" />
+  </svg>
+)
+
+// ✅ Example WhatsApp Button
+const WhatsAppButton = () => (
+  <Button
+    className="bg-green-500 hover:bg-green-600 text-white flex items-center gap-2"
+    onClick={() => window.open("https://wa.me/2348061989962", "_blank")} 
+  >
+    <WhatsAppIcon className="w-5 h-5" />
+    
+  </Button>
+)
+
+export { WhatsAppButton }
+
+
 
 const musicDrops = [
   {
@@ -265,8 +293,8 @@ export default function MusicPublisherHome() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <div>
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">10+</div>
-              <div className="text-muted-foreground">Clients</div>
+              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">5+</div>
+              <div className="text-muted-foreground">Roaster Artists</div>
             </div>
             <div>
               <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">50k+</div>
@@ -619,9 +647,9 @@ export default function MusicPublisherHome() {
                 <a href="https://twitter.com/curatorrsounds" target="_blank" rel="noopener noreferrer">
                   <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
                 </a>
-                <a href="https://facebook.com/curatorrsounds" target="_blank" rel="noopener noreferrer">
-                  <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-                </a>
+              
+                  <WhatsAppButton />
+    
               </div>
             </div>
             <div>
