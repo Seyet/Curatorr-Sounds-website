@@ -324,7 +324,7 @@ export default function MusicPublisherHome() {
                             <img
                               src={drop.image || "/placeholder.svg"}
                               alt={drop.title}
-                              className="w-fit h-64 sm:h-80 md:h-96 object-cover"
+                              className="w-full h-full sm:h-80 md:h-96 object-cover"
                             />
                             <div className="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                               <Button className="bg-primary text-primary-foreground">
