@@ -266,10 +266,10 @@ export default function MusicPublisherHome() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <div>
               <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">10+</div>
-              <div className="text-muted-foreground">Artists Signed</div>
+              <div className="text-muted-foreground">Clients</div>
             </div>
             <div>
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">500k+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">50k+</div>
               <div className="text-muted-foreground">Streams Generated</div>
             </div>
             <div>
