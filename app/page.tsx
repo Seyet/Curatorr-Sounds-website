@@ -724,7 +724,7 @@ export default function MusicPublisherHome() {
             </div>
           </div>
           <div className="border-t border-border mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-muted-foreground text-sm sm:text-base">
-            <p>&copy; 2025 Curatorr Sounds . All rights reserved.</p>
+            <p>&copy; 2025 CURATORR SOUNDS . All rights reserved.</p>
           </div>
         </div>
       </footer>
