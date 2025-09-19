@@ -7,7 +7,7 @@ import { Suspense } from "react" // Added Suspense import
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "CURATORR SOUNDS - Music Publisher",
+  title: "CURATORR SOUNDS ",
   description: "Amplifying Independent Artists - Digital music distribution and artist development",
   generator: "v0.app",
 }
