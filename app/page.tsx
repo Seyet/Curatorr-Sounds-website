@@ -277,13 +277,20 @@ export default function MusicPublisherHome() {
               </Button>
             </a>
 
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent w-full sm:w-auto"
-            >
-              Partner With Us
-            </Button>
+           <a
+  href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button
+    size="lg"
+    className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
+  >
+    <Play className="mr-2 h-5 w-5" />
+    Contact Us
+  </Button>
+</a>
+
           </div>
         </div>
       </section>
