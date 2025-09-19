@@ -660,11 +660,7 @@ export default function MusicPublisherHome() {
                     Music Distribution
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Artist Development
-                  </a>
-                </li>
+                
                 <li>
                   <a href="#" className="hover:text-primary transition-colors">
                     Marketing
@@ -696,7 +692,7 @@ export default function MusicPublisherHome() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
+                   <a href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C" className="hover:text-primary transition-colors">
                     Support
                   </a>
                 </li>
