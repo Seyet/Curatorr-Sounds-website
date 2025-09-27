@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "CURATORR SOUNDS ",
   description: "Amplifying Independent Artists - Digital music distribution and artist development",
   generator: "v0.app",
+  icons: {
+    icon:"/curatorr-sounds-logo.png",
+  },
 }
 
 export default function RootLayout({
