@@ -23,8 +23,9 @@ export const metadata: Metadata = {
     address: false,
   },
   icons: {
-    icon: "/assets/curatorr-sounds-logo.png",
-    apple: "/assets/curatorr-sounds-logo.png",
+    icon: "/curatorr-sounds-logo.png",
+    apple: "/curatorr-sounds-logo.png",
+    shortcut: "/curatorr-sounds-logo.png",
   },
   openGraph: {
     type: "website",
