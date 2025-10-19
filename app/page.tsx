@@ -23,14 +23,7 @@ import { useState, useEffect } from "react"
 
 // ✅ WhatsApp SVG Component
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    {...props}
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-  >
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
     <path d="M20.52 3.48A11.82 11.82 0 0 0 12.05 0C5.6 0 .23 5.37.23 11.82c0 2.08.55 4.1 1.6 5.89L0 24l6.43-1.69a11.78 11.78 0 0 0 5.61 1.43h.01c6.45 0 11.82-5.37 11.82-11.82 0-3.16-1.23-6.13-3.35-8.25zM12.05 21.6c-1.8 0-3.56-.48-5.1-1.4l-.36-.21-3.82 1 1.02-3.73-.25-.38a9.61 9.61 0 0 1-1.48-5.13c0-5.31 4.32-9.63 9.63-9.63 2.57 0 4.98 1 6.79 2.8a9.54 9.54 0 0 1 2.83 6.8c0 5.31-4.32 9.63-9.63 9.63zm5.29-7.21c-.29-.14-1.71-.84-1.97-.93-.27-.1-.46-.14-.66.14-.2.29-.76.93-.93 1.12-.17.19-.34.21-.63.07-.29-.14-1.22-.45-2.32-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.59.13-.13.29-.34.44-.51.15-.17.2-.29.3-.48.1-.19.05-.36-.02-.5-.07-.14-.66-1.59-.91-2.18-.24-.58-.48-.5-.66-.51-.17-.01-.36-.01-.55-.01s-.5.07-.76.36c-.26.29-1 1-1 2.43 0 1.43 1.03 2.81 1.17 3 .15.19 2.02 3.08 4.9 4.32.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.33z" />
   </svg>
 )
@@ -39,16 +32,13 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const WhatsAppButton = () => (
   <Button
     className="bg-green-500 hover:bg-green-600 text-white flex items-center gap-2"
-    onClick={() => window.open("https://wa.me/2348061989962", "_blank")} 
+    onClick={() => window.open("https://wa.me/2348061989962", "_blank")}
   >
     <WhatsAppIcon className="w-5 h-5" />
-    
   </Button>
 )
 
 export { WhatsAppButton }
-
-
 
 const musicDrops = [
   {
@@ -263,11 +253,12 @@ export default function MusicPublisherHome() {
       <section className="relative py-12 sm:py-16 md:py-24 px-4 bg-gradient-to-br from-card to-background">
         <div className="container mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-4 sm:mb-6 text-balance">
-            Amplifying Independent <span className="text-primary">Artists</span>
+            <span className="text-primary">Curatorr Sounds</span> - Amplifying Independent{" "}
+            <span className="text-primary">Artists</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto text-pretty">
-            We discover, develop, and distribute exceptional music from independent artists worldwide. Your sound
-            deserves to be heard.
+            Curatorr Sounds is your premier digital music distribution platform. We discover, develop, and distribute
+            exceptional music from independent artists worldwide. Your sound deserves to be heard.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://linktr.ee/curatorrsounds" target="_blank" rel="noopener noreferrer">
@@ -277,20 +268,16 @@ export default function MusicPublisherHome() {
               </Button>
             </a>
 
-           <a
-  href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Button
-    size="lg"
-    className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
-  >
-    <Play className="mr-2 h-5 w-5" />
-    Contact Us
-  </Button>
-</a>
-
+            <a
+              href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
+                <Play className="mr-2 h-5 w-5" />
+                Contact Us
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -319,16 +306,19 @@ export default function MusicPublisherHome() {
       <section id="about" className="py-12 sm:py-16 md:py-20 px-4">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 sm:mb-8">About Us</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 sm:mb-8">
+              About Curatorr Sounds
+            </h2>
             <div className="text-base sm:text-lg text-muted-foreground leading-relaxed space-y-4 sm:space-y-6">
               <p className="text-pretty">
-                <strong className="text-foreground">CURATORR SOUNDS</strong> is a digital media distribution company
+                <strong className="text-foreground">Curatorr Sounds</strong> is a digital media distribution company
                 aimed at serving ease when it comes to Music & Video distribution in digital form to Record Labels,
                 Independent Artists within and beyond the borders of Africa.
               </p>
               <p className="text-pretty">
-                Tapping into the younger and fast rising demographic of talents, making sure the world gets to hear
-                those distinctive sounds is our priority and we're moving closer to that goal everyday.
+                Tapping into the younger and fast rising demographic of talents, Curatorr Sounds makes sure the world
+                gets to hear those distinctive sounds. We're moving closer to that goal every day by providing
+                comprehensive music distribution services and artist development support.
               </p>
             </div>
           </div>
@@ -654,9 +644,8 @@ export default function MusicPublisherHome() {
                 <a href="https://twitter.com/curatorrsounds" target="_blank" rel="noopener noreferrer">
                   <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
                 </a>
-              
-                  <WhatsAppButton />
-    
+
+                <WhatsAppButton />
               </div>
             </div>
             <div>
@@ -667,7 +656,7 @@ export default function MusicPublisherHome() {
                     Music Distribution
                   </a>
                 </li>
-                
+
                 <li>
                   <a href="#" className="hover:text-primary transition-colors">
                     Marketing
@@ -699,7 +688,10 @@ export default function MusicPublisherHome() {
                   </a>
                 </li>
                 <li>
-                   <a href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C" className="hover:text-primary transition-colors">
+                  <a
+                    href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C"
+                    className="hover:text-primary transition-colors"
+                  >
                     Support
                   </a>
                 </li>
@@ -710,7 +702,7 @@ export default function MusicPublisherHome() {
               <div className="space-y-2 text-muted-foreground text-sm sm:text-base">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4 flex-shrink-0" />
-                  <span className="break-all">curatorsoundent@gmail.com</span>
+                  <span className="break-all">info@curatorrsounds.com</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4 flex-shrink-0" />

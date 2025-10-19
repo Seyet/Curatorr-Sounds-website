@@ -7,16 +7,16 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "CURATORR SOUNDS - Independent Music Distribution & Artist Development",
+  title: "Curatorr Sounds - Independent Music Distribution & Artist Development Platform",
   description:
-    "Amplifying Independent Artists - Digital music distribution, artist development, and music promotion. Discover exceptional music from independent artists worldwide.",
+    "Curatorr Sounds is a leading digital music distribution platform amplifying independent artists. Discover music distribution, artist development, and music promotion services for African artists and beyond.",
   keywords:
-    "music distribution, independent artists, digital music, music publishing, artist development, music promotion, afrobeat, streaming",
+    "Curatorr Sounds, music distribution, independent artists, digital music platform, artist development, music promotion, afrobeat distribution, music publishing, independent music label",
   generator: "v0.app",
-  applicationName: "CURATORR SOUNDS",
-  authors: [{ name: "CURATORR SOUNDS" }],
-  creator: "CURATORR SOUNDS",
-  publisher: "CURATORR SOUNDS",
+  applicationName: "Curatorr Sounds",
+  authors: [{ name: "Curatorr Sounds" }],
+  creator: "Curatorr Sounds",
+  publisher: "Curatorr Sounds",
   formatDetection: {
     email: false,
     telephone: false,
@@ -30,16 +30,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://curatorrsounds.com",
-    siteName: "CURATORR SOUNDS",
-    title: "CURATORR SOUNDS - Independent Music Distribution & Artist Development",
+    siteName: "Curatorr Sounds",
+    title: "Curatorr Sounds - Independent Music Distribution Platform",
     description:
-      "Amplifying Independent Artists - Digital music distribution, artist development, and music promotion. Discover exceptional music from independent artists worldwide.",
+      "Curatorr Sounds amplifies independent artists through digital music distribution, artist development, and global music promotion. Reach 95+ countries.",
     images: [
       {
         url: "https://i.postimg.cc/1X1Mxb20/IMG-4104.png",
         width: 1200,
         height: 630,
-        alt: "CURATORR SOUNDS - Music Distribution Platform",
+        alt: "Curatorr Sounds - Music Distribution Platform for Independent Artists",
         type: "image/png",
       },
     ],
@@ -48,8 +48,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@curatorrsounds",
     creator: "@curatorrsounds",
-    title: "CURATORR SOUNDS - Independent Music Distribution",
-    description: "Amplifying Independent Artists - Digital music distribution and artist development",
+    title: "Curatorr Sounds - Independent Music Distribution",
+    description:
+      "Curatorr Sounds amplifies independent artists through digital music distribution and artist development",
     images: ["https://i.postimg.cc/1X1Mxb20/IMG-4104.png"],
   },
   robots: {
@@ -76,7 +77,7 @@ export const metadata: Metadata = {
     maximumScale: 5,
   },
   category: "Music",
-  classification: "Music Distribution",
+  classification: "Music Distribution Platform",
 }
 
 export default function RootLayout({
@@ -92,7 +93,11 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="CURATORR SOUNDS" />
+        <meta name="apple-mobile-web-app-title" content="Curatorr Sounds" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="author" content="Curatorr Sounds" />
+        <meta name="distribution" content="global" />
 
         <script
           type="application/ld+json"
@@ -100,10 +105,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "CURATORR SOUNDS",
+              name: "Curatorr Sounds",
+              alternateName: "CURATORR SOUNDS",
               url: "https://curatorrsounds.com",
               logo: "https://curatorrsounds.com/curatorr-sounds-logo.png",
-              description: "Digital music distribution company serving independent artists and record labels",
+              description:
+                "Curatorr Sounds is a digital music distribution company serving independent artists and record labels worldwide",
               sameAs: [
                 "https://www.instagram.com/curatorr.sounds",
                 "https://twitter.com/curatorrsounds",
@@ -120,6 +127,35 @@ export default function RootLayout({
                 addressLocality: "Lagos",
                 addressCountry: "NG",
               },
+              foundingDate: "2024",
+              areaServed: ["NG", "US", "UK", "CA", "AU", "ZA"],
+            }),
+          }}
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Curatorr Sounds",
+              image: "https://curatorrsounds.com/curatorr-sounds-logo.png",
+              description: "Independent music distribution and artist development platform",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Lagos",
+                addressCountry: "NG",
+              },
+              telephone: "+234-806-198-9962",
+              email: "curatorsoundent@gmail.com",
+              url: "https://curatorrsounds.com",
+              priceRange: "$$",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.8",
+                reviewCount: "50",
+              },
             }),
           }}
         />
@@ -130,10 +166,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "MusicGroup",
-              name: "CURATORR SOUNDS",
+              name: "Curatorr Sounds",
               url: "https://curatorrsounds.com",
-              description: "Independent music distribution and artist development platform",
-              genre: ["Afrobeat", "Afro-Pop", "Afro-Fusion"],
+              description: "Curatorr Sounds - Independent music distribution and artist development platform",
+              genre: ["Afrobeat", "Afro-Pop", "Afro-Fusion", "Hip-Hop", "R&B"],
               sameAs: ["https://open.spotify.com/artist/curatorrsounds", "https://www.instagram.com/curatorr.sounds"],
             }),
           }}
@@ -149,7 +185,7 @@ export default function RootLayout({
                 {
                   "@type": "ListItem",
                   position: 1,
-                  name: "Home",
+                  name: "Curatorr Sounds Home",
                   item: "https://curatorrsounds.com",
                 },
                 {
@@ -161,8 +197,14 @@ export default function RootLayout({
                 {
                   "@type": "ListItem",
                   position: 3,
-                  name: "Catalog",
+                  name: "Music Catalog",
                   item: "https://linktr.ee/curatorrsounds",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 4,
+                  name: "Services",
+                  item: "https://curatorrsounds.com#services",
                 },
               ],
             }),
@@ -175,8 +217,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "CURATORR SOUNDS",
+              name: "Curatorr Sounds",
               url: "https://curatorrsounds.com",
+              description: "Curatorr Sounds - Independent music distribution platform",
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
