@@ -1,10 +1,12 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Plus, Trash2, Edit2, Save, X } from "lucide-react"
+import { Plus, Trash2, Edit2, Save, X, Upload } from "lucide-react"
 
 interface MusicDrop {
   id: string
@@ -22,6 +24,8 @@ export default function MusicDropsEditor() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [isAdding, setIsAdding] = useState(false)
   const [formData, setFormData] = useState<Partial<MusicDrop>>({})
+  const [isUploadingImage, setIsUploadingImage] = useState(false)
+  const [imagePreview, setImagePreview] = useState<string>("")
 
   useEffect(() => {
     loadDrops()
@@ -39,9 +43,36 @@ export default function MusicDropsEditor() {
     }
   }
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setIsUploadingImage(true)
+    try {
+      const formDataObj = new FormData()
+      formDataObj.append("file", file)
+
+      const response = await fetch("/api/admin/upload-image", {
+        method: "POST",
+        body: formDataObj,
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setFormData({ ...formData, image: data.url })
+        setImagePreview(data.url)
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error)
+    } finally {
+      setIsUploadingImage(false)
+    }
+  }
+
   const handleEdit = (drop: MusicDrop) => {
     setEditingId(drop.id)
     setFormData(drop)
+    setImagePreview(drop.image)
   }
 
   const handleAdd = () => {
@@ -54,6 +85,7 @@ export default function MusicDropsEditor() {
       genre: "",
       url: "",
     })
+    setImagePreview("")
   }
 
   const handleSave = async () => {
@@ -72,6 +104,7 @@ export default function MusicDropsEditor() {
         setEditingId(null)
         setIsAdding(false)
         setFormData({})
+        setImagePreview("")
       }
     } catch (error) {
       console.error("Error saving drop:", error)
@@ -98,6 +131,7 @@ export default function MusicDropsEditor() {
     setEditingId(null)
     setIsAdding(false)
     setFormData({})
+    setImagePreview("")
   }
 
   if (isLoading) {
@@ -170,13 +204,36 @@ export default function MusicDropsEditor() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground">Image URL</label>
-                <Input
-                  value={formData.image || ""}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  placeholder="https://..."
-                  className="bg-background text-foreground border-border"
-                />
+                <label className="text-sm font-medium text-foreground">Image</label>
+                <div className="flex gap-2 items-end">
+                  <div className="flex-1">
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={isUploadingImage}
+                      className="bg-background text-foreground border-border"
+                    />
+                  </div>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    disabled={isUploadingImage}
+                    className="border-border bg-transparent"
+                  >
+                    <Upload className="h-4 w-4" />
+                  </Button>
+                </div>
+                {imagePreview && (
+                  <div className="mt-2">
+                    <img
+                      src={imagePreview || "/placeholder.svg"}
+                      alt="Preview"
+                      className="w-20 h-20 object-cover rounded"
+                    />
+                  </div>
+                )}
               </div>
 
               <div>

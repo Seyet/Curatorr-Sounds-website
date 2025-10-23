@@ -40,86 +40,6 @@ const WhatsAppButton = () => (
 
 export { WhatsAppButton }
 
-const musicDrops = [
-  {
-    title: "Change Story & Many Thoughts",
-    artist: "Dharmisco_lm ft Waziyung",
-    image: "https://i.postimg.cc/1X1Mxb20/IMG-4104.png",
-    releaseDate: "Sep 2025",
-    genre: "Afro beat",
-    url: "https://curatorrsounds.fanlink.tv/change-story_and_many-thoughts",
-  },
-  {
-    title: "Body Riddim",
-    artist: "Valentino RDM",
-    image: "https://i.postimg.cc/kGj0WFXv/IMG-8336.png",
-    releaseDate: "Feb 2025",
-    genre: "Afro Pop",
-    url: "https://curatorrsounds.fanlink.tv/bodyriddim",
-  },
-  {
-    title: "Martell",
-    artist: "Habeskid",
-    image: "https://i.postimg.cc/901n1J88/IMG-2934.png",
-    releaseDate: "May 2025",
-    genre: "Afrobeat",
-    url: "https://curatorrsounds.fanlink.tv/Martell",
-  },
-  {
-    title: "Ohema & How to please a woman",
-    artist: "SOK1E",
-    image: "https://i.postimg.cc/SRQFGYdG/245-B301-A-4-E26-44-AD-A80-F-B96290-A8-A887.jpg",
-    releaseDate: "Jul 2025",
-    genre: "Afro-Pop",
-    url: "https://curatorrsounds.lnk.to/ohema-htpaw",
-  },
-]
-
-const latestReleases = [
-  {
-    title: "Change Story & Many Thoughts",
-    artist: "Dharmisco_Lm Ft Waziyung",
-    image: "https://i.postimg.cc/ZYD0F3bv/Image-16.jpg",
-    genre: "Afro-beat",
-    url: "https://curatorrsounds.fanlink.tv/change-story_and_many-thoughts",
-  },
-  {
-    title: "That Girl",
-    artist: "Mouth ft Habeskid",
-    image: "https://i.postimg.cc/8kKCdbxv/Image-11.jpg",
-    genre: "Afro-beat",
-    url: "https://curatorrsounds.fanlink.tv/That-girl",
-  },
-  {
-    title: "Pray",
-    artist: "Valentino RDM",
-    image: "https://i.postimg.cc/bwy0Dk3D/Image-12.jpg",
-    genre: "Afro-Pop",
-    url: "https://curatorrsounds.fanlink.tv/Pray",
-  },
-  {
-    title: "Ohema & How to Please a Woman",
-    artist: "SOK1E",
-    image: "https://i.postimg.cc/tg7hDy09/Image-13.jpg",
-    genre: "Afro-Pop",
-    url: "https://curatorrsounds.lnk.to/ohema-htpaw",
-  },
-  {
-    title: "Sisi Aminatu",
-    artist: "Yioye ft Yabazzi",
-    image: "https://i.postimg.cc/gkjpsBSG/Image-19.jpg",
-    genre: "Afro-Pop",
-    url: "https://curatorrsounds.fanlink.tv/sisi-aminatu",
-  },
-  {
-    title: "Martell",
-    artist: "Habeskid",
-    image: "https://i.postimg.cc/rsMWfwdV/Image14.jpg",
-    genre: "Afro-beat",
-    url: "https://curatorrsounds.fanlink.tv/Martell",
-  },
-]
-
 export default function MusicPublisherHome() {
   const [email, setEmail] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -127,6 +47,36 @@ export default function MusicPublisherHome() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [musicDrops, setMusicDrops] = useState<any[]>([])
+  const [latestReleases, setLatestReleases] = useState<any[]>([])
+  const [featuredArtists, setFeaturedArtists] = useState<any[]>([])
+  const [isLoadingContent, setIsLoadingContent] = useState(true)
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const [dropsRes, releasesRes, artistsRes] = await Promise.all([
+          fetch("/api/admin/music-drops"),
+          fetch("/api/admin/latest-releases"),
+          fetch("/api/admin/featured-artists"),
+        ])
+
+        const dropsData = await dropsRes.json()
+        const releasesData = await releasesRes.json()
+        const artistsData = await artistsRes.json()
+
+        if (dropsData.drops?.length > 0) setMusicDrops(dropsData.drops)
+        if (releasesData.releases?.length > 0) setLatestReleases(releasesData.releases)
+        if (artistsData.artists?.length > 0) setFeaturedArtists(artistsData.artists)
+      } catch (error) {
+        console.error("Error fetching content:", error)
+      } finally {
+        setIsLoadingContent(false)
+      }
+    }
+
+    fetchContent()
+  }, [])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % musicDrops.length)
@@ -433,44 +383,7 @@ export default function MusicPublisherHome() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                name: "Valentino RDM",
-                genre: "Afro Pop",
-                image: "https://i.postimg.cc/WpGTNYQm/Image-5.jpg",
-                url: "https://open.spotify.com/artist/6Rbxf3J1zqXycVA6dcl8pK?si=MdC7cDizQEur3q0oPTcsNg",
-              },
-              {
-                name: "Habeskid",
-                genre: "Afrobeat",
-                image: "https://i.postimg.cc/wvJHsw3p/Image-6.jpg",
-                url: "https://open.spotify.com/artist/6JubhE6zndqvbg0bF2Sr4n?si=X-dmxJrqRmSZYYLShE4O9Q",
-              },
-              {
-                name: "Mouth",
-                genre: "Afrobeat",
-                image: "https://i.postimg.cc/RCyVhnF9/Image-7.jpg",
-                url: "https://open.spotify.com/artist/013oY0qCSOaGG9xyaSg3wB?si=OrJX9RZ8SXOGaKTESxSo5Q",
-              },
-              {
-                name: "Renay",
-                genre: "Afro-Fusion",
-                image: "https://i.postimg.cc/Px2mB5Kb/Image-20.jpg",
-                url: "https://open.spotify.com/artist/7wN4hPyUsATGf8ZF5RC8YW?si=88U5twyQRwutlObq1dDOjw",
-              },
-              {
-                name: "Dharmisco_lm",
-                genre: "Afro-beat",
-                image: "https://i.postimg.cc/8CyRqznP/Image-9.jpg",
-                url: "https://open.spotify.com/artist/5I48g4GCWfT4ECAZ7umM2O?si=uKwmj5QGTbGGfXT0L1GS3A",
-              },
-              {
-                name: "SOK1E",
-                genre: "Afro-Pop",
-                image: "https://i.postimg.cc/pX6tXfhD/Image-10.jpg",
-                url: "https://open.spotify.com/artist/6v6M5rmRPJDfahY6OAFCeT?si=Sc3CGWztQqWeYPPG6wTnWw",
-              },
-            ].map((artist, index) => (
+            {featuredArtists.map((artist, index) => (
               <a key={index} href={artist.url} target="_blank" rel="noopener noreferrer" className="block">
                 <Card className="group hover:shadow-lg transition-all duration-300 bg-card border-border cursor-pointer">
                   <CardContent className="p-0">
