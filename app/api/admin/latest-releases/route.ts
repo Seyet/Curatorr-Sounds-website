@@ -12,7 +12,7 @@ async function getLatestReleases() {
 
 async function saveLatestReleases(releases: any) {
   const { put } = await import("@vercel/blob")
-  await put("latest-releases.json", JSON.stringify(releases), { access: "public" })
+  await put("latest-releases.json", JSON.stringify(releases), { access: "public", allowOverwrite: true })
 }
 
 export async function GET() {

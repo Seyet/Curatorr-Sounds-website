@@ -12,7 +12,7 @@ async function getMusicDrops() {
 
 async function saveMusicDrops(drops: any) {
   const { put } = await import("@vercel/blob")
-  await put("music-drops.json", JSON.stringify(drops), { access: "public" })
+  await put("music-drops.json", JSON.stringify(drops), { access: "public", allowOverwrite: true })
 }
 
 export async function GET() {

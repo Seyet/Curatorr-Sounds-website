@@ -12,7 +12,7 @@ async function getFeaturedArtists() {
 
 async function saveFeaturedArtists(artists: any) {
   const { put } = await import("@vercel/blob")
-  await put("featured-artists.json", JSON.stringify(artists), { access: "public" })
+  await put("featured-artists.json", JSON.stringify(artists), { access: "public", allowOverwrite: true })
 }
 
 export async function GET() {
