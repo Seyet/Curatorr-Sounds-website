@@ -1,11 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { put, get } from "@vercel/blob"
-
-const LATEST_RELEASES_KEY = "latest-releases.json"
 
 async function getLatestReleases() {
   try {
-    const blob = await get(LATEST_RELEASES_KEY)
+    const { get } = await import("@vercel/blob")
+    const blob = await get("latest-releases.json")
     return JSON.parse(await blob.text())
   } catch {
     return []
@@ -13,7 +11,8 @@ async function getLatestReleases() {
 }
 
 async function saveLatestReleases(releases: any) {
-  await put(LATEST_RELEASES_KEY, JSON.stringify(releases), { access: "private" })
+  const { put } = await import("@vercel/blob")
+  await put("latest-releases.json", JSON.stringify(releases), { access: "private" })
 }
 
 export async function GET() {

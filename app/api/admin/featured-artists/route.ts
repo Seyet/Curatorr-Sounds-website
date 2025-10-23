@@ -1,11 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { put, get } from "@vercel/blob"
-
-const FEATURED_ARTISTS_KEY = "featured-artists.json"
 
 async function getFeaturedArtists() {
   try {
-    const blob = await get(FEATURED_ARTISTS_KEY)
+    const { get } = await import("@vercel/blob")
+    const blob = await get("featured-artists.json")
     return JSON.parse(await blob.text())
   } catch {
     return []
@@ -13,7 +11,8 @@ async function getFeaturedArtists() {
 }
 
 async function saveFeaturedArtists(artists: any) {
-  await put(FEATURED_ARTISTS_KEY, JSON.stringify(artists), { access: "private" })
+  const { put } = await import("@vercel/blob")
+  await put("featured-artists.json", JSON.stringify(artists), { access: "private" })
 }
 
 export async function GET() {

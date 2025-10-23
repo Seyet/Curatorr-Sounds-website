@@ -1,11 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { put, get } from "@vercel/blob"
-
-const MUSIC_DROPS_KEY = "music-drops.json"
 
 async function getMusicDrops() {
   try {
-    const blob = await get(MUSIC_DROPS_KEY)
+    const { get } = await import("@vercel/blob")
+    const blob = await get("music-drops.json")
     return JSON.parse(await blob.text())
   } catch {
     return []
@@ -13,7 +11,8 @@ async function getMusicDrops() {
 }
 
 async function saveMusicDrops(drops: any) {
-  await put(MUSIC_DROPS_KEY, JSON.stringify(drops), { access: "private" })
+  const { put } = await import("@vercel/blob")
+  await put("music-drops.json", JSON.stringify(drops), { access: "private" })
 }
 
 export async function GET() {
