@@ -1,36 +1,21 @@
 import { type NextRequest, NextResponse } from "next/server"
-
-async function getLatestReleases() {
-  try {
-    const { get } = await import("@vercel/blob")
-    const blob = await get("latest-releases.json")
-    return JSON.parse(await blob.text())
-  } catch {
-    return []
-  }
-}
-
-async function saveLatestReleases(releases: any) {
-  const { put } = await import("@vercel/blob")
-  await put("latest-releases.json", JSON.stringify(releases), { access: "public", allowOverwrite: true })
-}
+import { createClient } from "@/lib/supabase/server"
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const data = await request.json()
-    console.log("[v0] Updating release:", params.id, data)
-    const releases = await getLatestReleases()
+    const supabase = await createClient()
 
-    const index = releases.findIndex((r: any) => r.id === params.id)
-    if (index === -1) {
-      return NextResponse.json({ error: "Release not found" }, { status: 404 })
-    }
+    const { data: updatedRelease, error } = await supabase
+      .from("latest_releases")
+      .update(data)
+      .eq("id", params.id)
+      .select()
+      .single()
 
-    releases[index] = { ...releases[index], ...data }
-    await saveLatestReleases(releases)
-    console.log("[v0] Release updated successfully")
+    if (error) throw error
 
-    return NextResponse.json(releases[index])
+    return NextResponse.json(updatedRelease)
   } catch (error) {
     console.error("[v0] Error updating release:", error)
     return NextResponse.json({ error: "Failed to update release" }, { status: 500 })
@@ -39,16 +24,12 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    console.log("[v0] Deleting release:", params.id)
-    const releases = await getLatestReleases()
-    const filtered = releases.filter((r: any) => r.id !== params.id)
+    const supabase = await createClient()
 
-    if (filtered.length === releases.length) {
-      return NextResponse.json({ error: "Release not found" }, { status: 404 })
-    }
+    const { error } = await supabase.from("latest_releases").delete().eq("id", params.id)
 
-    await saveLatestReleases(filtered)
-    console.log("[v0] Release deleted successfully")
+    if (error) throw error
+
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("[v0] Error deleting release:", error)

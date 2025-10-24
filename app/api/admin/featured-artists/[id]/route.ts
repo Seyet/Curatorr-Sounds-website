@@ -1,36 +1,21 @@
 import { type NextRequest, NextResponse } from "next/server"
-
-async function getFeaturedArtists() {
-  try {
-    const { get } = await import("@vercel/blob")
-    const blob = await get("featured-artists.json")
-    return JSON.parse(await blob.text())
-  } catch {
-    return []
-  }
-}
-
-async function saveFeaturedArtists(artists: any) {
-  const { put } = await import("@vercel/blob")
-  await put("featured-artists.json", JSON.stringify(artists), { access: "public", allowOverwrite: true })
-}
+import { createClient } from "@/lib/supabase/server"
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const data = await request.json()
-    console.log("[v0] Updating artist:", params.id, data)
-    const artists = await getFeaturedArtists()
+    const supabase = await createClient()
 
-    const index = artists.findIndex((a: any) => a.id === params.id)
-    if (index === -1) {
-      return NextResponse.json({ error: "Artist not found" }, { status: 404 })
-    }
+    const { data: updatedArtist, error } = await supabase
+      .from("featured_artists")
+      .update(data)
+      .eq("id", params.id)
+      .select()
+      .single()
 
-    artists[index] = { ...artists[index], ...data }
-    await saveFeaturedArtists(artists)
-    console.log("[v0] Artist updated successfully")
+    if (error) throw error
 
-    return NextResponse.json(artists[index])
+    return NextResponse.json(updatedArtist)
   } catch (error) {
     console.error("[v0] Error updating artist:", error)
     return NextResponse.json({ error: "Failed to update artist" }, { status: 500 })
@@ -39,16 +24,12 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    console.log("[v0] Deleting artist:", params.id)
-    const artists = await getFeaturedArtists()
-    const filtered = artists.filter((a: any) => a.id !== params.id)
+    const supabase = await createClient()
 
-    if (filtered.length === artists.length) {
-      return NextResponse.json({ error: "Artist not found" }, { status: 404 })
-    }
+    const { error } = await supabase.from("featured_artists").delete().eq("id", params.id)
 
-    await saveFeaturedArtists(filtered)
-    console.log("[v0] Artist deleted successfully")
+    if (error) throw error
+
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("[v0] Error deleting artist:", error)

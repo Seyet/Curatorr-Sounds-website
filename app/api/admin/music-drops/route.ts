@@ -1,29 +1,14 @@
 import { type NextRequest, NextResponse } from "next/server"
-
-async function getMusicDrops() {
-  try {
-    const { get } = await import("@vercel/blob")
-    const blob = await get("music-drops.json")
-    const data = JSON.parse(await blob.text())
-    console.log("[v0] Loaded music drops:", data)
-    return data
-  } catch (error) {
-    console.log("[v0] No existing music drops, returning empty array")
-    return []
-  }
-}
-
-async function saveMusicDrops(drops: any) {
-  const { put } = await import("@vercel/blob")
-  console.log("[v0] Saving music drops:", drops)
-  await put("music-drops.json", JSON.stringify(drops), { access: "public", allowOverwrite: true })
-  console.log("[v0] Music drops saved successfully")
-}
+import { createClient } from "@/lib/supabase/server"
 
 export async function GET() {
   try {
-    const drops = await getMusicDrops()
-    return NextResponse.json({ drops })
+    const supabase = await createClient()
+    const { data, error } = await supabase.from("music_drops").select("*").order("created_at", { ascending: false })
+
+    if (error) throw error
+
+    return NextResponse.json({ drops: data || [] })
   } catch (error) {
     console.error("[v0] Error fetching drops:", error)
     return NextResponse.json({ drops: [] })
@@ -33,16 +18,11 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
-    console.log("[v0] Creating new drop:", data)
-    const drops = await getMusicDrops()
+    const supabase = await createClient()
 
-    const newDrop = {
-      id: Date.now().toString(),
-      ...data,
-    }
+    const { data: newDrop, error } = await supabase.from("music_drops").insert([data]).select().single()
 
-    drops.push(newDrop)
-    await saveMusicDrops(drops)
+    if (error) throw error
 
     return NextResponse.json(newDrop, { status: 201 })
   } catch (error) {
