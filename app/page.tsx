@@ -61,15 +61,20 @@ export default function MusicPublisherHome() {
           fetch("/api/admin/featured-artists"),
         ])
 
-        const dropsData = await dropsRes.json()
-        const releasesData = await releasesRes.json()
-        const artistsData = await artistsRes.json()
-
-        if (dropsData.drops?.length > 0) setMusicDrops(dropsData.drops)
-        if (releasesData.releases?.length > 0) setLatestReleases(releasesData.releases)
-        if (artistsData.artists?.length > 0) setFeaturedArtists(artistsData.artists)
+        if (dropsRes.ok) {
+          const dropsData = await dropsRes.json()
+          if (dropsData.drops?.length > 0) setMusicDrops(dropsData.drops)
+        }
+        if (releasesRes.ok) {
+          const releasesData = await releasesRes.json()
+          if (releasesData.releases?.length > 0) setLatestReleases(releasesData.releases)
+        }
+        if (artistsRes.ok) {
+          const artistsData = await artistsRes.json()
+          if (artistsData.artists?.length > 0) setFeaturedArtists(artistsData.artists)
+        }
       } catch (error) {
-        console.error("Error fetching content:", error)
+        console.error("[v0] Error fetching content:", error)
       } finally {
         setIsLoadingContent(false)
       }
