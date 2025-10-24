@@ -12,12 +12,13 @@ async function getLatestReleases() {
 
 async function saveLatestReleases(releases: any) {
   const { put } = await import("@vercel/blob")
-  await put("latest-releases.json", JSON.stringify(releases), { access: "public" })
+  await put("latest-releases.json", JSON.stringify(releases), { access: "public", allowOverwrite: true })
 }
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const data = await request.json()
+    console.log("[v0] Updating release:", params.id, data)
     const releases = await getLatestReleases()
 
     const index = releases.findIndex((r: any) => r.id === params.id)
@@ -27,16 +28,18 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
     releases[index] = { ...releases[index], ...data }
     await saveLatestReleases(releases)
+    console.log("[v0] Release updated successfully")
 
     return NextResponse.json(releases[index])
   } catch (error) {
-    console.error("Error updating release:", error)
+    console.error("[v0] Error updating release:", error)
     return NextResponse.json({ error: "Failed to update release" }, { status: 500 })
   }
 }
 
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
+    console.log("[v0] Deleting release:", params.id)
     const releases = await getLatestReleases()
     const filtered = releases.filter((r: any) => r.id !== params.id)
 
@@ -45,9 +48,10 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     }
 
     await saveLatestReleases(filtered)
+    console.log("[v0] Release deleted successfully")
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Error deleting release:", error)
+    console.error("[v0] Error deleting release:", error)
     return NextResponse.json({ error: "Failed to delete release" }, { status: 500 })
   }
 }

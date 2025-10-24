@@ -12,12 +12,13 @@ async function getFeaturedArtists() {
 
 async function saveFeaturedArtists(artists: any) {
   const { put } = await import("@vercel/blob")
-  await put("featured-artists.json", JSON.stringify(artists), { access: "public" })
+  await put("featured-artists.json", JSON.stringify(artists), { access: "public", allowOverwrite: true })
 }
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const data = await request.json()
+    console.log("[v0] Updating artist:", params.id, data)
     const artists = await getFeaturedArtists()
 
     const index = artists.findIndex((a: any) => a.id === params.id)
@@ -27,16 +28,18 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
     artists[index] = { ...artists[index], ...data }
     await saveFeaturedArtists(artists)
+    console.log("[v0] Artist updated successfully")
 
     return NextResponse.json(artists[index])
   } catch (error) {
-    console.error("Error updating artist:", error)
+    console.error("[v0] Error updating artist:", error)
     return NextResponse.json({ error: "Failed to update artist" }, { status: 500 })
   }
 }
 
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
+    console.log("[v0] Deleting artist:", params.id)
     const artists = await getFeaturedArtists()
     const filtered = artists.filter((a: any) => a.id !== params.id)
 
@@ -45,9 +48,10 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     }
 
     await saveFeaturedArtists(filtered)
+    console.log("[v0] Artist deleted successfully")
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Error deleting artist:", error)
+    console.error("[v0] Error deleting artist:", error)
     return NextResponse.json({ error: "Failed to delete artist" }, { status: 500 })
   }
 }
