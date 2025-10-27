@@ -4,7 +4,7 @@
 
 ## Deployment
 
-Your project is live at:
+Project is live at:
 
 **curatorrsounds.com**
 
