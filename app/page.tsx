@@ -57,6 +57,7 @@ const musicDrops = [
     genre: "Afro Pop",
     url: "https://curatorrsounds.fanlink.tv/bodyriddim",
   },
+  
   {
     title: "Martell",
     artist: "Habeskid",
@@ -76,6 +77,21 @@ const musicDrops = [
 ]
 
 const latestReleases = [
+  {
+    title: "Hold Me",
+    artist: "Mouth",
+    image: "https://i.postimg.cc/sf4zzrh5/Image-24.jpg",
+    genre: "Afro-beat",
+    url: "https://curatorrsounds.fanlink.tv/hold_me",
+  },
+
+  {
+    title: "Allowance",
+    artist: "Loverlee Shanna ft Dharmisco LM",
+    image: "https://i.postimg.cc/g2kvY82X/IMG-4475.png",
+    genre: "Afro-beat",
+    url: "https://curatorrsounds.fanlink.tv/allowance",
+  },
   {
     title: "Change Story & Many Thoughts",
     artist: "Dharmisco_Lm Ft Waziyung",
@@ -588,7 +604,7 @@ export default function MusicPublisherHome() {
         </div>
       </section>
 
-    {/* Team Section */}
+  {/* Team Section */}
 <section id="team" className="py-12 sm:py-16 md:py-20 px-4 bg-muted/30">
   <div className="container mx-auto text-center">
     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -603,18 +619,21 @@ export default function MusicPublisherHome() {
         {
           name: "Eyinjuoluwa Jubril",
           role: "CEO & Co-Founder",
+          email: "boycuratorr@curatorrsounds.com",
           twitter: "https://twitter.com/",
           instagram: "https://instagram.com/",
         },
         {
           name: "Oluwaseyi Oguntusin",
-          role: "CTO/Senior VP & Co-Founder",
+          role: "CTO / Senior VP & Co-Founder",
+          email: "loseyi@curatorrsounds.com",
           twitter: "https://twitter.com/",
           instagram: "https://instagram.com/",
         },
         {
           name: "Oghenetega Umukoro",
-          role: "Head of Operations  ",
+          role: "Head of Operations",
+          email: "tega@curatorrsounds.com",
           twitter: "https://twitter.com/",
           instagram: "https://instagram.com/",
         },
@@ -635,7 +654,15 @@ export default function MusicPublisherHome() {
             <h3 className="text-xl font-bold text-foreground mb-1">
               {member.name}
             </h3>
-            <p className="text-muted-foreground mb-4">{member.role}</p>
+            <p className="text-muted-foreground mb-1">{member.role}</p>
+            <p className="text-sm text-primary/80 mb-4">
+              <a
+                href={`mailto:${member.email}`}
+                className="hover:underline hover:text-primary"
+              >
+                {member.email}
+              </a>
+            </p>
             <div className="flex justify-center space-x-4">
               <Button
                 variant="ghost"
@@ -658,6 +685,7 @@ export default function MusicPublisherHome() {
     </div>
   </div>
 </section>
+
 
 
       {/* Newsletter Signup */}
