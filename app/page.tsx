@@ -588,6 +588,78 @@ export default function MusicPublisherHome() {
         </div>
       </section>
 
+    {/* Team Section */}
+<section id="team" className="py-12 sm:py-16 md:py-20 px-4 bg-muted/30">
+  <div className="container mx-auto text-center">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+      Meet the Team
+    </h2>
+    <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+      The creative minds behind Curatorr Sounds
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {[
+        {
+          name: "Eyinjuoluwa Jubril",
+          role: "CEO & Co-Founder",
+          twitter: "https://twitter.com/",
+          instagram: "https://instagram.com/",
+        },
+        {
+          name: "Oluwaseyi Oguntusin",
+          role: "CTO/Senior VP & Co-Founder",
+          twitter: "https://twitter.com/",
+          instagram: "https://instagram.com/",
+        },
+        {
+          name: "Oghenetega Umukoro",
+          role: "Head of Operations  ",
+          twitter: "https://twitter.com/",
+          instagram: "https://instagram.com/",
+        },
+      ].map((member, index) => (
+        <Card
+          key={index}
+          className="group hover:shadow-lg transition-all bg-card border-border"
+        >
+          <CardContent className="p-6 text-center">
+            <div className="mb-4">
+              <div className="w-16 h-16 rounded-full bg-primary/10 mx-auto flex items-center justify-center text-primary font-semibold text-xl">
+                {member.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </div>
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-1">
+              {member.name}
+            </h3>
+            <p className="text-muted-foreground mb-4">{member.role}</p>
+            <div className="flex justify-center space-x-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => window.open(member.twitter, "_blank")}
+              >
+                <Twitter className="h-5 w-5 text-primary hover:text-primary/80" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => window.open(member.instagram, "_blank")}
+              >
+                <Instagram className="h-5 w-5 text-primary hover:text-primary/80" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+
       {/* Newsletter Signup */}
       <section className="py-12 sm:py-16 md:py-20 px-4 bg-foreground">
         <div className="container mx-auto text-center">
