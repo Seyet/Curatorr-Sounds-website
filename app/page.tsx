@@ -307,7 +307,7 @@ export default function MusicPublisherHome() {
             </a>
 
             <a
-              href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C"
+              href="mailto:info@curatorrsounds.com?subject=Hello%20Curatorr%20Sounds&body=Hi%20team%2C"
               target="_blank"
               rel="noopener noreferrer"
             >
