@@ -42,29 +42,30 @@ export { WhatsAppButton }
 
 const musicDrops = [
   {
-    title: "Change Story & Many Thoughts",
-    artist: "Dharmisco_lm ft Waziyung",
-    image: "https://i.postimg.cc/1X1Mxb20/IMG-4104.png",
-    releaseDate: "Sep 2025",
+    title: "KANA",
+    artist: "3RDTUNES",
+    image: "https://i.postimg.cc/P5d40hQN/unnamed.jpg",
+    releaseDate: "Nov 2025",
     genre: "Afro beat",
-    url: "https://curatorrsounds.fanlink.tv/change-story_and_many-thoughts",
+    url: "https://curatorrsounds.fanlink.tv/kana",
   },
+ 
   {
+    title: "Flow",
+    artist: "Habeskid ft Farouqq",
+    image: "https://i.postimg.cc/hGpVkdtc/unnamed.jpg",
+    releaseDate: "Nov 2025",
+    genre: "Afrobeat",
+    url: "https://curatorrsounds.fanlink.tv/Flow",
+  },
+  
+   {
     title: "Body Riddim",
     artist: "Valentino RDM",
     image: "https://i.postimg.cc/kGj0WFXv/IMG-8336.png",
     releaseDate: "Feb 2025",
     genre: "Afro Pop",
     url: "https://curatorrsounds.fanlink.tv/bodyriddim",
-  },
-  
-  {
-    title: "Martell",
-    artist: "Habeskid",
-    image: "https://i.postimg.cc/901n1J88/IMG-2934.png",
-    releaseDate: "May 2025",
-    genre: "Afrobeat",
-    url: "https://curatorrsounds.fanlink.tv/Martell",
   },
   {
     title: "Ohema & How to please a woman",
@@ -77,6 +78,27 @@ const musicDrops = [
 ]
 
 const latestReleases = [
+  {
+    title: "KANA",
+    artist: "3RDTUNES",
+    image: "https://i.postimg.cc/4x5gTfCB/unnamed.jpg",
+    genre: "Afro-beat",
+    url: "https://curatorrsounds.fanlink.tv/kana",
+  },
+   {
+    title: "Flow",
+    artist: "Habeskid ft Farouqq",
+    image: "https://i.postimg.cc/mrD0f7y3/unnamed.jpg",
+    genre: "Afro-beat",
+    url: "https://curatorrsounds.fanlink.tv/Flow",
+  },
+   {
+    title: "Sè Ló",
+    artist: "Dáèmíì",
+    image: "https://i.postimg.cc/1Xk94JJZ/unnamed.jpg",
+    genre: "Afro-beat",
+    url: "https://curatorrsounds.fanlink.tv/Se-lo",
+  },
   {
     title: "Hold Me",
     artist: "Mouth",
@@ -385,7 +407,7 @@ export default function MusicPublisherHome() {
                             <p className="text-sm text-muted-foreground mb-4 sm:mb-6">Released {drop.releaseDate}</p>
                             <a href={drop.url} target="_blank" rel="noopener noreferrer">
                               <Button className="w-full sm:w-fit bg-primary text-primary-foreground hover:bg-primary/90">
-                                Listen on Spotify
+                                Listen here
                               </Button>
                             </a>
                           </div>
