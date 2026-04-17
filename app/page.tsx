@@ -219,12 +219,12 @@ export default function MusicPublisherHome() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <img src="/curatorr-sounds-logo.png" alt="CURATORR SOUNDS" className="h-8 sm:h-10 w-auto" />
-              <span className="text-lg sm:text-xl font-bold text-foreground">CURATORR SOUNDS</span>
+              <span className="text-lg sm:text-xl font-bold text-foreground">CURATORR</span>
             </div>
             <div className="md:hidden">
               <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -232,54 +232,52 @@ export default function MusicPublisherHome() {
               </Button>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
-                About
+              <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                ABOUT
               </a>
-              <a href="#artists" className="text-foreground hover:text-primary transition-colors">
-                Artists
+              <a href="#artists" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                ARTISTS
               </a>
               <a
                 href="https://linktr.ee/curatorrsounds"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
-                Catalog
+                MUSIC
               </a>
-              <a href="#services" className="text-foreground hover:text-primary transition-colors">
-                Services
-              </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-                Contact
+              <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                CONTACT
               </a>
             </div>
             <div className="hidden md:block">
               <a href="https://tally.so/r/mVrjLy" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Submit Demo</Button>
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-semibold">
+                  SUBMIT DEMO
+                </Button>
               </a>
             </div>
           </div>
           {isMobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t border-border">
               <div className="flex flex-col space-y-4 pt-4">
-                <a href="#about" className="text-foreground hover:text-primary transition-colors">
-                  About
+                <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                  ABOUT
                 </a>
-                <a href="#artists" className="text-foreground hover:text-primary transition-colors">
-                  Artists
+                <a href="#artists" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                  ARTISTS
                 </a>
                 <a
                   href="https://linktr.ee/curatorrsounds"
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Catalog
+                  MUSIC
                 </a>
-                <a href="#services" className="text-foreground hover:text-primary transition-colors">
-                  Services
-                </a>
-                <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-                  Contact
+                <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                  CONTACT
                 </a>
                 <a href="https://tally.so/r/mVrjLy" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">Submit Demo</Button>
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full text-sm font-semibold">
+                    SUBMIT DEMO
+                  </Button>
                 </a>
               </div>
             </div>
@@ -287,33 +285,32 @@ export default function MusicPublisherHome() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-24 px-4 bg-gradient-to-br from-card to-background">
-        <div className="container mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-4 sm:mb-6 text-balance">
-            <span className="text-primary">Curatorr Sounds</span> - Amplifying Independent{" "}
-            <span className="text-primary">Artists</span>
+      {/* Hero Section - Dark & Bold */}
+      <section className="relative h-screen md:min-h-[600px] bg-black flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80"></div>
+          <img
+            src="/folk-rock-musician-with-guitar.jpg"
+            alt="Independent Artist"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-tight">
+            AMPLIFYING<br />INDEPENDENT<br />ARTISTS
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto text-pretty">
-            Curatorr Sounds is your premier digital music distribution platform. We discover, develop, and distribute
-            exceptional music from independent artists worldwide. Your sound deserves to be heard.
+          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Curatorr Sounds distributes your music to over 95+ countries. We amplify your sound.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://linktr.ee/curatorrsounds" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
-                <Play className="mr-2 h-5 w-5" />
-                Explore Catalog
+              <Button size="lg" className="bg-white text-black hover:bg-gray-200 font-bold text-base w-full sm:w-auto">
+                EXPLORE MUSIC
               </Button>
             </a>
-
-            <a
-              href="mailto:info@curatorrsounds.com?subject=Hello%20Curatorr%20Sounds&body=Hi%20team%2C"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
-                <Play className="mr-2 h-5 w-5" />
-                Contact Us
+            <a href="https://tally.so/r/mVrjLy" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-white text-black hover:bg-gray-200 font-bold text-base w-full sm:w-auto">
+                SUBMIT DEMO
               </Button>
             </a>
           </div>
@@ -321,42 +318,66 @@ export default function MusicPublisherHome() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 sm:py-16 px-4 bg-muted/30">
+      <section className="py-16 sm:py-20 px-4 bg-white">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
-            <div>
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">5+</div>
-              <div className="text-muted-foreground">Roaster Artists</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
+            <div className="text-center">
+              <div className="text-5xl sm:text-6xl font-bold text-black mb-3">5+</div>
+              <div className="text-lg text-gray-600 font-semibold">ROSTER ARTISTS</div>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">50k+</div>
-              <div className="text-muted-foreground">Streams Generated</div>
+            <div className="bg-black text-white p-8 sm:p-10 text-center">
+              <div className="text-5xl sm:text-6xl font-bold mb-3">50k+</div>
+              <div className="text-lg font-semibold">ACTIVE STREAMS</div>
             </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">95+</div>
-              <div className="text-muted-foreground">Countries Reached</div>
+            <div className="text-center">
+              <div className="text-5xl sm:text-6xl font-bold text-black mb-3">95+</div>
+              <div className="text-lg text-gray-600 font-semibold">COUNTRIES SONGS</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Us Section */}
-      <section id="about" className="py-12 sm:py-16 md:py-20 px-4">
+      {/* Digital Distribution Section */}
+      <section className="py-16 sm:py-20 px-4 bg-gradient-to-br from-white to-gray-50">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 sm:mb-8">
-              About Curatorr Sounds
-            </h2>
-            <div className="text-base sm:text-lg text-muted-foreground leading-relaxed space-y-4 sm:space-y-6">
-              <p className="text-pretty">
-                <strong className="text-foreground">Curatorr Sounds</strong> is a digital media distribution company
-                aimed at serving ease when it comes to Music & Video distribution in digital form to Record Labels,
-                Independent Artists within and beyond the borders of Africa.
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="relative h-80 sm:h-96 bg-gray-800 rounded-lg overflow-hidden">
+              <img
+                src="/electronic-music-duo.jpg"
+                alt="Digital Distribution"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
+                DIGITAL<br />DISTRIBUTION<br />REDEFINED
+              </h2>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                Our distribution framework is built for speed and precision. We don't just push music—we architect a global sonic presence, ensuring your art reaches every corner of the streaming universe.
               </p>
-              <p className="text-pretty">
-                Tapping into the younger and fast rising demographic of talents, Curatorr Sounds makes sure the world
-                gets to hear those distinctive sounds. We're moving closer to that goal every day by providing
-                comprehensive music distribution services and artist development support.
+              <a href="https://tally.so/r/mVrjLy" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-black text-white hover:bg-gray-800 font-bold text-base">
+                  EXPLORE PLATFORM
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Us Section - Dark with White Text */}
+      <section id="about" className="py-16 sm:py-20 px-4 bg-black text-white">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 leading-tight">
+              HUMAN<br />CURATION
+            </h2>
+            <div className="text-lg sm:text-xl text-gray-300 leading-relaxed space-y-6">
+              <p>
+                We reject the algorithm. Every artist is hand-selected for sonic merit. Curated by humans. Executed with precision. We believe in the intelligence of taste—that rare intersection where commercial viability meets artistic integrity.
+              </p>
+              <p>
+                Our roster represents more than music—it represents a statement about what independent art can achieve when given the right platform, the right partners, and the right distribution muscle.
               </p>
             </div>
           </div>
@@ -462,12 +483,12 @@ export default function MusicPublisherHome() {
       </section>
 
       {/* Featured Artists */}
-      <section id="artists" className="py-12 sm:py-16 md:py-20 px-4 bg-muted/30">
+      <section id="artists" className="py-16 sm:py-20 px-4 bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">Featured Artists</h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Discover the incredible talent in our roster
+          <div className="mb-12 sm:mb-16">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-4 leading-tight">CURRENT ROSTER</h2>
+            <p className="text-lg text-gray-600">
+              Exceptional talent. Exceptional sound.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -710,18 +731,32 @@ export default function MusicPublisherHome() {
 
 
 
-      {/* Newsletter Signup */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-foreground">
+      {/* Mission Statement Section */}
+      <section className="py-16 sm:py-20 px-4 bg-black text-white">
         <div className="container mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-background mb-4">Stay in the Loop</h2>
-          <p className="text-lg sm:text-xl text-background/80 mb-6 sm:mb-8 max-w-2xl mx-auto">
-            Get the latest updates on new releases, artist spotlights, and industry insights.
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-8 leading-tight max-w-4xl mx-auto">
+            "WE ARE NOT A LABEL.<br />WE ARE A STATEMENT OF<br />SONIC INTEGRITY."
+          </h2>
+          <a href="https://tally.so/r/mVrjLy" target="_blank" rel="noopener noreferrer">
+            <Button className="bg-white text-black hover:bg-gray-200 font-bold text-base mt-8">
+              JOIN THE ROSTER
+            </Button>
+          </a>
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 bg-white">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4">Stay Connected</h2>
+          <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto">
+            Get updates on new releases, featured artists, and exclusive opportunities.
           </p>
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
             <Input
               type="email"
               placeholder="Enter your email"
-              className="bg-background text-foreground border-0"
+              className="bg-gray-100 text-black border-0 placeholder:text-gray-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -729,14 +764,14 @@ export default function MusicPublisherHome() {
             />
             <Button
               type="submit"
-              className="bg-background text-foreground hover:bg-background/90"
+              className="bg-black text-white hover:bg-gray-800 font-bold"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Subscribing..." : "Subscribe"}
+              {isSubmitting ? "..." : "SUBSCRIBE"}
             </Button>
           </form>
           {message && (
-            <p className={`mt-4 text-sm ${message.includes("Successfully") ? "text-green-400" : "text-red-400"}`}>
+            <p className={`mt-4 text-sm ${message.includes("Successfully") ? "text-green-600" : "text-red-600"}`}>
               {message}
             </p>
           )}
@@ -744,16 +779,16 @@ export default function MusicPublisherHome() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="py-12 sm:py-16 px-4 bg-muted">
+      <footer id="contact" className="py-12 sm:py-16 px-4 bg-black text-white border-t border-gray-800">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="sm:col-span-2 md:col-span-1">
               <div className="flex items-center space-x-3 mb-4">
                 <img src="/curatorr-sounds-logo.png" alt="CURATORR SOUNDS" className="h-6 sm:h-8 w-auto" />
-                <span className="text-base sm:text-lg font-bold text-foreground">CURATORR SOUNDS</span>
+                <span className="text-base sm:text-lg font-bold text-white">CURATORR</span>
               </div>
-              <p className="text-muted-foreground mb-4 text-sm sm:text-base">
-                Empowering independent artists to reach their full potential.
+              <p className="text-gray-400 mb-4 text-sm sm:text-base">
+                Amplifying independent artists globally.
               </p>
               <div className="flex space-x-4">
                 <a
@@ -761,67 +796,67 @@ export default function MusicPublisherHome() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+                  <Instagram className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
                 </a>
                 <a href="https://twitter.com/curatorrsounds" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+                  <Twitter className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
                 </a>
 
                 <WhatsAppButton />
               </div>
             </div>
             <div>
-              <h3 className="font-bold text-foreground mb-4 text-base sm:text-lg">Services</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm sm:text-base">
+              <h3 className="font-bold text-white mb-4 text-base sm:text-lg">SERVICES</h3>
+              <ul className="space-y-2 text-gray-400 text-sm sm:text-base">
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Music Distribution
+                  <a href="#" className="hover:text-white transition-colors">
+                    Distribution
                   </a>
                 </li>
 
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Marketing
+                  <a href="#" className="hover:text-white transition-colors">
+                    Artist Development
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Sync Licensing
+                  <a href="#" className="hover:text-white transition-colors">
+                    Licensing
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold text-foreground mb-4 text-base sm:text-lg">Resources</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm sm:text-base">
+              <h3 className="font-bold text-white mb-4 text-base sm:text-lg">EXPLORE</h3>
+              <ul className="space-y-2 text-gray-400 text-sm sm:text-base">
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Artist Portal
+                  <a href="#artists" className="hover:text-white transition-colors">
+                    Our Artists
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Blog
+                  <a href="https://linktr.ee/curatorrsounds" target="_blank" className="hover:text-white transition-colors">
+                    Music
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    FAQ
+                  <a href="https://tally.so/r/mVrjLy" target="_blank" className="hover:text-white transition-colors">
+                    Submit Demo
                   </a>
                 </li>
                 <li>
                   <a
-                    href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curator%20Sound&body=Hi%20team%2C"
-                    className="hover:text-primary transition-colors"
+                    href="mailto:curatorsoundent@gmail.com?subject=Hello%20Curatorr%20Sounds&body=Hi%20team%2C"
+                    className="hover:text-white transition-colors"
                   >
-                    Support
+                    Contact
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold text-foreground mb-4 text-base sm:text-lg">Contact</h3>
-              <div className="space-y-2 text-muted-foreground text-sm sm:text-base">
+              <h3 className="font-bold text-white mb-4 text-base sm:text-lg">CONTACT</h3>
+              <div className="space-y-2 text-gray-400 text-sm sm:text-base">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4 flex-shrink-0" />
                   <span className="break-all">info@curatorrsounds.com</span>
@@ -837,8 +872,8 @@ export default function MusicPublisherHome() {
               </div>
             </div>
           </div>
-          <div className="border-t border-border mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-muted-foreground text-sm sm:text-base">
-            <p>&copy; 2025 CURATORR SOUNDS . All rights reserved.</p>
+          <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-sm sm:text-base">
+            <p>&copy; 2025 CURATORR SOUNDS. All rights reserved.</p>
           </div>
         </div>
       </footer>
